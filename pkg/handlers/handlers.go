@@ -21,50 +21,50 @@ func GetProgram(req *events.APIGatewayProxyRequest, tbName string, client dynamo
 	if len(id) > 0 {
 		result, err := program.FetchProgram(id, tbName, client)
 		if err != nil {
-			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
+			return ApiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
 		}
-		return apiResponse(http.StatusOK, result)
+		return ApiResponse(http.StatusOK, result)
 	}
 	result, err := program.FetchAllProgram(tbName, client)
 	if err != nil {
-		return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
+		return ApiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
 	}
-	return apiResponse(http.StatusOK, result)
+	return ApiResponse(http.StatusOK, result)
 }
 
 func CreateProgram(req *events.APIGatewayProxyRequest, tbName string, client dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
 	result, err := program.CreateProgram(req, tbName, client)
 	if err != nil {
-		return apiResponse(http.StatusBadRequest, ErrorBody{
+		return ApiResponse(http.StatusBadRequest, ErrorBody{
 			aws.String(err.Error()),
 		})
 	}
 
-	return apiResponse(http.StatusCreated, result)
+	return ApiResponse(http.StatusCreated, result)
 }
 
 func UpdateProgram(req *events.APIGatewayProxyRequest, tbName string, client dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
 	result, err := program.UpdateProgram(req, tbName, client)
 	if err != nil {
-		return apiResponse(http.StatusBadRequest, ErrorBody{
+		return ApiResponse(http.StatusBadRequest, ErrorBody{
 			aws.String(err.Error()),
 		})
 	}
 
-	return apiResponse(http.StatusOK, result)
+	return ApiResponse(http.StatusOK, result)
 }
 
 func DeleteProgram(req *events.APIGatewayProxyRequest, tbName string, client dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
 	err := program.DeleteProgram(req, tbName, client)
 	if err != nil {
-		return apiResponse(http.StatusBadRequest, ErrorBody{
+		return ApiResponse(http.StatusBadRequest, ErrorBody{
 			aws.String(err.Error()),
 		})
 	}
 
-	return apiResponse(http.StatusOK, nil)
+	return ApiResponse(http.StatusOK, nil)
 }
 
 func UnhandledMethod() (*events.APIGatewayProxyResponse, error) {
-	return apiResponse(http.StatusMethodNotAllowed, ErrorMethodNotAllowed)
+	return ApiResponse(http.StatusMethodNotAllowed, ErrorMethodNotAllowed)
 }

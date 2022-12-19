@@ -14,13 +14,13 @@ import (
 var (
 	ErrorFailedToFetchRecord     = "failed to fetch record"
 	ErrorFailedToUnmarshalRecord = "failed to unmarshal record"
-	ErrorInvalidProgramData         = "invalid program data"
-	ErrorInvalidId            = "invalid id"
+	ErrorInvalidProgramData      = "invalid program data"
+	ErrorInvalidId               = "invalid id"
 	ErrorCouldNotMarshalItem     = "could not marshal item"
 	ErrorCouldNotDeleteItem      = "could not delete item"
 	ErrorCouldNotDynamoPutItem   = "could not dynamo put item"
-	ErrorProgramAlreadyExist        = "program.Program already exist"
-	ErrorProgramDoesNotExist        = "program.Program does not exist"
+	ErrorProgramAlreadyExist     = "program.Program already exist"
+	ErrorProgramDoesNotExist     = "program.Program does not exist"
 )
 
 type Program struct {
