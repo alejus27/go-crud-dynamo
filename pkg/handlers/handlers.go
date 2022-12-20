@@ -25,6 +25,7 @@ func GetProgram(req *events.APIGatewayProxyRequest, tbName string, client dynamo
 		}
 		return ApiResponse(http.StatusOK, result)
 	}
+
 	result, err := program.FetchAllProgram(tbName, client)
 	if err != nil {
 		return ApiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
